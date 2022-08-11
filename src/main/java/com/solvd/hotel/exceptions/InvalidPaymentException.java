@@ -1,10 +1,11 @@
 package com.solvd.hotel.exceptions;
 
-public class InvalidPaymentException extends Exception{
-    /*public InvalidTransactionException() {
+public class InvalidPaymentException extends Exception {
 
-    }*/
-    public InvalidPaymentException() {};
+    public InvalidPaymentException() {
+        super("Your payment was failed. Please try again.");
+    }
+
     public InvalidPaymentException(String message) {
         super(message);
     }

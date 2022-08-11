@@ -3,6 +3,7 @@ package com.solvd.hotel.mainHotel;
 import java.util.Objects;
 import java.lang.String;
 import java.util.Arrays;
+
 public abstract class Address {
     private String nameCountry;
     private String city;

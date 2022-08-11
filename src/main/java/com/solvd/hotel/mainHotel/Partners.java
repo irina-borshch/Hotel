@@ -12,8 +12,9 @@ public class Partners extends Address {
 
     public Partners() {
     }
-    public Partners(String nameCountry, String city, String address,int partnerId, String partnerName,
-                    String phoneNumber, Service service){
+
+    public Partners(String nameCountry, String city, String address, int partnerId, String partnerName,
+                    String phoneNumber, Service service) {
         super(nameCountry, city, address);
         this.partnerId = partnerId;
         this.partnerName = partnerName;
@@ -24,6 +25,7 @@ public class Partners extends Address {
     public int getPartnerId() {
         return partnerId;
     }
+
     public void setPartnerID(int partnerId) {
         this.partnerId = partnerId;
     }
@@ -35,6 +37,7 @@ public class Partners extends Address {
     public void setPartnerName(String partnerName) {
         this.partnerName = partnerName;
     }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -54,14 +57,16 @@ public class Partners extends Address {
     @Override
     public String toString() {
         return getClass().getName() + "[nameCountry=" + getNameCountry() + ", city=" + getCity() + ", address=" + getAddress()
-                + ", partnerId" + getPartnerId() + ", partnerName" + getPartnerName() +  ", phoneNumber" + getPhoneNumber()
-        + ", service" +getService() + "]";
+                + ", partnerId" + getPartnerId() + ", partnerName" + getPartnerName() + ", phoneNumber" + getPhoneNumber()
+                + ", service" + getService() + "]";
     }
+
     @Override
-    public int hashCode () {
+    public int hashCode() {
         return Objects.hash(getNameCountry().hashCode(), getCity().hashCode(), getAddress().hashCode(),
-               getPartnerId(), getPartnerName().hashCode(), getPhoneNumber().hashCode(), getService().hashCode());
+                getPartnerId(), getPartnerName().hashCode(), getPhoneNumber().hashCode(), getService().hashCode());
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -2,37 +2,29 @@ package com.solvd.hotel.logic;
 
 import com.solvd.hotel.people.Guest;
 
-import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 
 public abstract class Reservation {
-    private Guest[] guest;
-    private Calendar date;
+    private List<Guest> guests;
     private double price;
 
-    public Reservation(){
+    public Reservation() {
 
     }
-    public Reservation(Guest[] guest, Calendar date, double price) {
-        this.guest = guest;
-        this.date = date;
+
+    public Reservation(List<Guest> guests, double price) {
+        this.guests = guests;
         this.price = price;
     }
-    public Guest[] getGuest() {
-        return guest;
+
+    public List<Guest> getGuests() {
+        return guests;
     }
 
-    public void setGuest(Guest[] guest) {
-        this.guest = guest;
-    }
-
-    public Calendar getDate() {
-        return date;
-    }
-
-    public void setDate(Calendar date) {
-        this.date = date;
+    public void setGuests(List<Guest> guests) {
+        this.guests = guests;
     }
 
     public double getPrice() {
@@ -45,12 +37,12 @@ public abstract class Reservation {
 
     @Override
     public String toString() {
-        return getClass().getName() + "[guest=" + getGuest() +", date=" + getDate() + ", price=" + getPrice() +"]";
+        return getClass().getName() + "[guest=" + getGuests() + ", price=" + getPrice() + "]";
     }
 
     @Override
-    public int hashCode () {
-        return Objects.hash(getGuest().hashCode(), getDate().hashCode(), getPrice());
+    public int hashCode() {
+        return Objects.hash(getGuests().hashCode(), getPrice());
     }
 
     @Override

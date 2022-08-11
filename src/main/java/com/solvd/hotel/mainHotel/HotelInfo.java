@@ -18,6 +18,7 @@ public class HotelInfo extends Address implements IReceptionCall {
     public HotelInfo() {
 
     }
+
     public HotelInfo(String hotelName, String nameCountry, String city, String address, String description,
                      int stars, List<Room> rooms, List<Employee> employees,
                      List<Service> services) {
@@ -74,15 +75,15 @@ public class HotelInfo extends Address implements IReceptionCall {
         return services;
     }
 
-    public void setServices (List<Service> services) {
+    public void setServices(List<Service> services) {
         this.services = services;
     }
 
     @Override
     public String toString() {
-            return getClass().getName() + "[hotelName" + getHotelName() + ", nameCountry=" + getNameCountry() +
-                    ", city=" + getCity() + ", address=" + getAddress() +  ", stars" + getStars()
-                    + ", rooms" + getRooms() + ", employees" + getEmployees() + ", services" + getServices() + "]";
+        return getClass().getName() + "[hotelName" + getHotelName() + ", nameCountry=" + getNameCountry() +
+                ", city=" + getCity() + ", address=" + getAddress() + ", stars" + getStars()
+                + ", rooms" + getRooms() + ", employees" + getEmployees() + ", services" + getServices() + "]";
     }
 
     @Override

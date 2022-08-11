@@ -16,6 +16,7 @@ public class Service implements Cleanable {
     public Service() {
 
     }
+
     public Service(int serviceId, Guest guest, int employeeId, String serviceName, boolean additionalService,
                    double price) {
         this.serviceId = serviceId;
@@ -25,6 +26,7 @@ public class Service implements Cleanable {
         this.additionalService = additionalService;
         this.price = price;
     }
+
     public int getServiceId() {
         return serviceId;
     }

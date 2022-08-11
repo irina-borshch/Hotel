@@ -1,6 +1,5 @@
 package com.solvd.hotel.invoice;
 
-import com.solvd.hotel.exceptions.Check;
 import com.solvd.hotel.people.Guest;
 import com.solvd.hotel.interfaces.IPaymentSuccess;
 import com.solvd.hotel.exceptions.InvalidPaymentException;
@@ -8,6 +7,7 @@ import com.solvd.hotel.exceptions.InvalidPaymentException;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -123,28 +123,23 @@ public class Payment implements IPaymentSuccess {
 
         return hashCode() == payment.hashCode();
     }
+
     @Override
-    public double getPrice () {
-        return getPrice() * guest.getDaysOfStay();
+    public double getPrice() {
+        return 0;
     }
+
     /*@Override*/
     public boolean paymentSuccess(Payment payment) {
         try {
             if (payment.success)
                 logger.info("Payment was successful. Thank you for choosing our hotel.");
-                // throw new InvalidPaymentException("Attempt to pay a bill");
+
             else
                 logger.info("Payment was unsuccessful. Please try again.");
             throw new InvalidPaymentException("Something went wrong");
         } catch (InvalidPaymentException e) {
             logger.info("Payment ID:" + paymentId + ", success" + success);
-            /*try {
-                throw new InvalidPaymentException("Payment unsuccessful");
-            } catch (InvalidPaymentException e);
-                logger.info("Payment was not successful. Please try it again");
-            }
-        }*/
-
 
         }
         return false;

@@ -11,6 +11,7 @@ public class AdditionalService {
 
     public AdditionalService() {
     }
+
     public AdditionalService(boolean TV, boolean taxiOrder, String serviceName, boolean conditioner, String extraMeal) {
         this.TV = TV;
         this.taxiOrder = taxiOrder;
@@ -18,6 +19,7 @@ public class AdditionalService {
         this.conditioner = conditioner;
         this.extraMeal = extraMeal;
     }
+
     public boolean getTV() {
         return TV;
     }

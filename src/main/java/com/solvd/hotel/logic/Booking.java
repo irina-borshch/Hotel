@@ -1,41 +1,44 @@
 package com.solvd.hotel.logic;
 
-import com.solvd.hotel.exceptions.AgeException;
-import com.solvd.hotel.exceptions.Check;
+import com.solvd.hotel.exceptions.DateException;
 import com.solvd.hotel.interfaces.IReceptionCall;
+import com.solvd.hotel.mainHotel.RoomType;
 import com.solvd.hotel.people.Guest;
-import com.solvd.hotel.mainHotel.roomType;
+import com.solvd.hotel.logic.BookingOrder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
-import java.util.Calendar;
+import java.util.Scanner;
 
 public class Booking extends Reservation implements IReceptionCall {
+    private static final Logger logger = LogManager.getLogger(Booking.class);
+
 
     private int bookingId;
-    private roomType type;
+    private RoomType type;
     private int numberOfGuests;
     private int numberOfDays;
     private int age;
+    private boolean booked = false;
 
-    Check c;
 
-    {
-        new Check();
-    }
-
-    public Booking(int bookingId, roomType type, Guest[] guest, int numberOfGuests,
-                   Calendar date, int numberOfDays, double price, int age) {
-        super(guest, date, price);
+    public Booking(int bookingId, RoomType type, List<Guest> guests, int numberOfGuests,
+                   int numberOfDays, double price, int age) {
+        super(guests, price);
         this.bookingId = bookingId;
         this.type = type;
         this.numberOfGuests = numberOfGuests;
         this.numberOfDays = numberOfDays;
         this.age = age;
-        try {
-            c.ageCheck(age);
-        } catch (AgeException e) {
-            this.age = age;
-        }
+
+
+    }
+
+    public Booking() {
+
     }
 
     public int getBookingId() {
@@ -46,11 +49,11 @@ public class Booking extends Reservation implements IReceptionCall {
         this.bookingId = bookingId;
     }
 
-    public roomType getType() {
+    public RoomType getType() {
         return type;
     }
 
-    public void setType(roomType type) {
+    public void setType(RoomType type) {
         this.type = type;
     }
 
@@ -73,20 +76,30 @@ public class Booking extends Reservation implements IReceptionCall {
     public int getAge() {
         return age;
     }
+
     public void setAge(int age) {
         this.age = age;
     }
 
+    public boolean getBooked() {
+        return booked;
+    }
+
+    public void setBooked(boolean booked) {
+        this.booked = booked;
+    }
+
+
     @Override
     public String toString() {
-        return getClass().getName() + "[guest=" + getGuest() + ", date=" + getDate() + ", bookingId=" + getBookingId()
+        return getClass().getName() + "[guest=" + getGuests() + ", bookingId=" + getBookingId()
                 + ", type=" + getType() + ", numberOfGuests=" + getNumberOfGuests() + ", numberOfDays=" + getNumberOfGuests()
                 + "]";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getGuest().hashCode(), getDate().hashCode(), getBookingId(), getType().hashCode(),
+        return Objects.hash(getGuests().hashCode(), getBookingId(), getType().hashCode(),
                 getNumberOfGuests(), getNumberOfDays());
     }
 
@@ -97,5 +110,28 @@ public class Booking extends Reservation implements IReceptionCall {
         Booking booking = (Booking) o;
         return hashCode() == booking.hashCode();
     }
-}
 
+    public void checkDate() throws DateException {
+        logger.info("Please enter booking date");
+        Scanner scan = new Scanner(System.in);
+        int date = scan.nextInt();
+        LocalDate dateNow = LocalDate.now();
+        LocalDate guestDate = LocalDate.of(2022, 8, 10);
+        if (guestDate.isBefore(dateNow)) {
+            try {
+                throw new DateException();
+            } catch (DateException e) {
+                logger.info("Your date is invalid.");
+                checkDate();
+            }
+            if (guestDate.isAfter(dateNow)) {
+                logger.info("You've created a booking. Thank you for choosing us!");
+            } else {
+                logger.info("You can not be able make a booking. Try again.");
+                throw new DateException("Your selected date is not valid.");
+
+            }
+
+        }
+    }
+}

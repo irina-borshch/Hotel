@@ -2,15 +2,12 @@ package com.solvd.hotel.exceptions;
 
 public class AgeException extends Exception {
     public AgeException() {
+        super("You must be over 18 years old");
 
     }
-    private int age;
 
-    public AgeException(int age) {
-        this.age = age;
+    public AgeException(String message) {
+        super(message);
     }
 
-    public int getAge() {
-        return age;
-    }
 }

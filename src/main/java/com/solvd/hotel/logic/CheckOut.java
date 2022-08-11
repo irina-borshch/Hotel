@@ -1,11 +1,9 @@
 package com.solvd.hotel.logic;
 
 import com.solvd.hotel.invoice.Payment;
-import com.solvd.hotel.people.Guest;
 import com.solvd.hotel.invoice.Service;
+import com.solvd.hotel.people.Guest;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,13 +12,14 @@ public class CheckOut extends Reservation {
     private Payment payment;
     private List<Service> services;
 
-    public CheckOut(Guest[] guest, int roomNum, Calendar date, double price, Payment payment,
+    public CheckOut(List<Guest> guests, int roomNum, double price, Payment payment,
                     List<Service> services) {
-        super(guest, date, price);
+        super(guests, price);
         this.roomNum = roomNum;
         this.payment = payment;
         this.services = services;
     }
+
     public int getRoomNum() {
         return roomNum;
     }
@@ -47,13 +46,13 @@ public class CheckOut extends Reservation {
 
     @Override
     public String toString() {
-        return getClass().getName() + "[guest=" + getGuest() +  ", roomNum=" + getRoomNum()
-                + ", date=" + getDate() + ", price=" + getPrice() + ", payment=" + getPayment() + ", services" + getServices() + "]";
+        return getClass().getName() + "[guest=" + getGuests() + ", roomNum=" + getRoomNum()
+                + ", price=" + getPrice() + ", payment=" + getPayment() + ", services" + getServices() + "]";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getGuest().hashCode(), getRoomNum(), getDate().hashCode(),
+        return Objects.hash(getGuests().hashCode(), getRoomNum(),
                 getPrice(), getPayment().hashCode(), getServices().hashCode());
     }
 

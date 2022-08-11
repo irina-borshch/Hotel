@@ -2,6 +2,7 @@ package com.solvd.hotel.mainHotel;
 
 
 import java.util.Objects;
+
 import com.solvd.hotel.mainHotel.Address;
 
 public class Branch extends Address {
@@ -19,6 +20,7 @@ public class Branch extends Address {
         this.qtyOfRooms = qtyOfRooms;
         this.adminName = adminName;
     }
+
     public int getBranchId() {
         return branchId;
     }
@@ -45,12 +47,12 @@ public class Branch extends Address {
 
     @Override
     public String toString() {
-            return getClass().getName() + "[nameCountry=" + getNameCountry() + ", city=" + getCity() + ", address=" + getAddress()
-                    + ", branchId" + getBranchId() + ", qtyOfRooms" + getQtyOfRooms() + ", adminName" + getAdminName() + "]";
+        return getClass().getName() + "[nameCountry=" + getNameCountry() + ", city=" + getCity() + ", address=" + getAddress()
+                + ", branchId" + getBranchId() + ", qtyOfRooms" + getQtyOfRooms() + ", adminName" + getAdminName() + "]";
     }
 
     @Override
-    public int hashCode () {
+    public int hashCode() {
         return Objects.hash(getNameCountry().hashCode(), getCity().hashCode(), getAddress().hashCode(), getBranchId(),
                 getQtyOfRooms(), getAdminName().hashCode());
     }
