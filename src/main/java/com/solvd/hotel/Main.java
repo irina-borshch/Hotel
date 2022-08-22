@@ -1,6 +1,8 @@
 package com.solvd.hotel;
 
 
+import com.solvd.hotel.interfaces.functional.IAddTime;
+import com.solvd.hotel.interfaces.functional.IRename;
 import com.solvd.hotel.invoice.AdditionalService;
 import com.solvd.hotel.logic.Booking;
 import com.solvd.hotel.logic.BookingRoomService;
@@ -9,6 +11,7 @@ import com.solvd.hotel.enums.RoomType;
 import com.solvd.hotel.people.Employee;
 import com.solvd.hotel.people.Guest;
 import com.solvd.hotel.taskUtils.Task1;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-       final BookingRoomService roomService = new BookingRoomService();
+        final BookingRoomService roomService = new BookingRoomService();
 
         final Guest firstGuest = new Guest();
         final List<Guest> guests;
@@ -45,6 +48,10 @@ public class Main {
 
         Task1 stringTask = new Task1();
         stringTask.count();
+
+        IRename ren = value -> StringUtils.reverse(value);
+        IAddTime a = () -> IAddTime.FORMATTER.format(Calendar.getInstance().getTime());
+        logger.info(ren.rename(firstGuest.getName()) + " " + a.addTime());
 
 
         AdditionalService additionalService1 = new AdditionalService(true, false, "tidy up", true, "breakfast");
