@@ -8,6 +8,7 @@ import com.solvd.hotel.logic.Booking;
 import com.solvd.hotel.logic.BookingRoomService;
 import com.solvd.hotel.logic.CheckIn;
 import com.solvd.hotel.enums.RoomType;
+import com.solvd.hotel.mainHotel.HotelInfo;
 import com.solvd.hotel.people.Employee;
 import com.solvd.hotel.people.Guest;
 import com.solvd.hotel.taskUtils.Task1;
@@ -15,7 +16,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Field;
+import java.lang.Exception;
 import java.util.*;
+import java.util.List;
 
 public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
@@ -30,6 +34,7 @@ public class Main {
         guests.add(firstGuest);
 
         Booking booking = new Booking();
+
 
         CheckIn checkIn = new CheckIn(guests, RoomType.ECONOM, 100, roomService);
         CheckIn secondCheckIn = new CheckIn(guests, RoomType.ECONOM, 200, roomService);
@@ -52,6 +57,20 @@ public class Main {
         IRename ren = value -> StringUtils.reverse(value);
         IAddTime a = () -> IAddTime.FORMATTER.format(Calendar.getInstance().getTime());
         logger.info(ren.rename(firstGuest.getName()) + " " + a.addTime());
+
+        HotelInfo hotelInfo = new HotelInfo();
+        hotelInfo.setHotelName("UK = HOME");
+        logger.info(hotelInfo.getHotelName());
+        String name = null;
+        try {
+            Field field = hotelInfo.getClass().getDeclaredField("hotelName");
+            field.setAccessible(true);
+           // field.set(hotelInfo, (String) "after reflection");
+            name = (String) field.get(hotelInfo);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        logger.info(name);
 
 
         AdditionalService additionalService1 = new AdditionalService(true, false, "tidy up", true, "breakfast");
