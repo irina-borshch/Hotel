@@ -4,16 +4,18 @@ import java.util.Objects;
 import java.lang.String;
 import java.util.Arrays;
 
+import com.solvd.hotel.enums.City;
+
 public abstract class Address {
     private String nameCountry;
-    private String city;
+    private City city;
     private String address;
 
     public Address() {
 
     }
 
-    public Address(String nameCountry, String city, String address) {
+    public Address(String nameCountry, City city, String address) {
         this.nameCountry = nameCountry;
         this.city = city;
         this.address = address;
@@ -27,11 +29,11 @@ public abstract class Address {
         this.nameCountry = nameCountry;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 

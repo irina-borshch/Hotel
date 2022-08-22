@@ -1,7 +1,7 @@
 package com.solvd.hotel.logic;
 
 import com.solvd.hotel.mainHotel.Room;
-import com.solvd.hotel.mainHotel.RoomType;
+import com.solvd.hotel.enums.RoomType;
 
 import java.util.Arrays;
 import java.util.List;

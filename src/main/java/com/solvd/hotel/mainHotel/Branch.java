@@ -3,6 +3,7 @@ package com.solvd.hotel.mainHotel;
 
 import java.util.Objects;
 
+import com.solvd.hotel.enums.City;
 import com.solvd.hotel.mainHotel.Address;
 
 public class Branch extends Address {
@@ -13,7 +14,7 @@ public class Branch extends Address {
     public Branch() {
     }
 
-    public Branch(String nameCountry, String city, String address, int branchId, int qtyOfRooms,
+    public Branch(String nameCountry, City city, String address, int branchId, int qtyOfRooms,
                   String adminName) {
         super(nameCountry, city, address);
         this.branchId = branchId;

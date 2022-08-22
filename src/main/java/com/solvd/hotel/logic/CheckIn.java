@@ -3,7 +3,7 @@ package com.solvd.hotel.logic;
 import com.solvd.hotel.exceptions.AgeException;
 import com.solvd.hotel.interfaces.Checkable;
 import com.solvd.hotel.mainHotel.Room;
-import com.solvd.hotel.mainHotel.RoomType;
+import com.solvd.hotel.enums.RoomType;
 import com.solvd.hotel.people.Guest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

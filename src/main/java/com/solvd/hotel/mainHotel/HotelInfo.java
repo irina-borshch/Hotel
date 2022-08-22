@@ -1,5 +1,6 @@
 package com.solvd.hotel.mainHotel;
 
+import com.solvd.hotel.enums.City;
 import com.solvd.hotel.interfaces.IReceptionCall;
 import com.solvd.hotel.people.Employee;
 import com.solvd.hotel.invoice.Service;
@@ -19,7 +20,7 @@ public class HotelInfo extends Address implements IReceptionCall {
 
     }
 
-    public HotelInfo(String hotelName, String nameCountry, String city, String address, String description,
+    public HotelInfo(String hotelName, String nameCountry, City city, String address, String description,
                      int stars, List<Room> rooms, List<Employee> employees,
                      List<Service> services) {
         super(nameCountry, city, address);

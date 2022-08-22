@@ -5,9 +5,10 @@ import com.solvd.hotel.invoice.AdditionalService;
 import com.solvd.hotel.logic.Booking;
 import com.solvd.hotel.logic.BookingRoomService;
 import com.solvd.hotel.logic.CheckIn;
-import com.solvd.hotel.mainHotel.RoomType;
+import com.solvd.hotel.enums.RoomType;
 import com.solvd.hotel.people.Employee;
 import com.solvd.hotel.people.Guest;
+import com.solvd.hotel.taskUtils.Task1;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +19,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final BookingRoomService roomService = new BookingRoomService();
+       final BookingRoomService roomService = new BookingRoomService();
 
         final Guest firstGuest = new Guest();
         final List<Guest> guests;
@@ -41,6 +42,9 @@ public class Main {
         }
 
         logger.info(checkIn.toString());
+
+        Task1 stringTask = new Task1();
+        stringTask.count();
 
 
         AdditionalService additionalService1 = new AdditionalService(true, false, "tidy up", true, "breakfast");

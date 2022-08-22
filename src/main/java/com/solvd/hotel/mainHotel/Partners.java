@@ -1,5 +1,6 @@
 package com.solvd.hotel.mainHotel;
 
+import com.solvd.hotel.enums.City;
 import com.solvd.hotel.invoice.Service;
 
 import java.util.Objects;
@@ -13,7 +14,7 @@ public class Partners extends Address {
     public Partners() {
     }
 
-    public Partners(String nameCountry, String city, String address, int partnerId, String partnerName,
+    public Partners(String nameCountry, City city, String address, int partnerId, String partnerName,
                     String phoneNumber, Service service) {
         super(nameCountry, city, address);
         this.partnerId = partnerId;

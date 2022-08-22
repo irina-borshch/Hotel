@@ -1,4 +1,4 @@
-package com.solvd.hotel.mainHotel;
+package com.solvd.hotel.enums;
 
 public enum RoomType {
     SINGLE, DOUBLE, TRIPLE, QUAD, QUEEN, ECONOM, PENTHOUSE

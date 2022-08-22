@@ -2,9 +2,8 @@ package com.solvd.hotel.logic;
 
 import com.solvd.hotel.exceptions.DateException;
 import com.solvd.hotel.interfaces.IReceptionCall;
-import com.solvd.hotel.mainHotel.RoomType;
+import com.solvd.hotel.enums.RoomType;
 import com.solvd.hotel.people.Guest;
-import com.solvd.hotel.logic.BookingOrder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

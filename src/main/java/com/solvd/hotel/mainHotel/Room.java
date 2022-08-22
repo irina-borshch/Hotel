@@ -1,5 +1,6 @@
 package com.solvd.hotel.mainHotel;
 
+import com.solvd.hotel.enums.RoomType;
 import com.solvd.hotel.interfaces.Cleanable;
 
 import java.util.Objects;
