@@ -13,6 +13,9 @@ import java.nio.charset.StandardCharsets;
 public class Task1 {
     private static final Logger logger = LogManager.getLogger(Task1.class);
 
+    public static void main(String[] args) {
+        count();
+    }
     public static void count() {
         try {
             //Task1 stringTask = new Task1();

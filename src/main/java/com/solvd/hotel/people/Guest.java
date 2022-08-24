@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Guest extends Person implements IPersonInfo, Cleanable {
     private static final Logger logger = LogManager.getLogger(Guest.class);
-    private int daysOfStay;
+    private String daysOfStay;
     private String phoneNumber;
     private boolean checkedIn;
 
@@ -19,18 +19,18 @@ public class Guest extends Person implements IPersonInfo, Cleanable {
 
     }
 
-    public Guest(String name, String lastName, int age, int daysOfStay, String phoneNumber, boolean checkedIn) {
+    public Guest(String name, String lastName, int age, String daysOfStay, String phoneNumber, boolean checkedIn) {
         super(name, lastName, age);
         this.daysOfStay = daysOfStay;
         this.phoneNumber = phoneNumber;
         this.checkedIn = checkedIn;
     }
 
-    public int getDaysOfStay() {
+    public String getDaysOfStay() {
         return daysOfStay;
     }
 
-    public void setDaysOfStay(int daysOfStay) {
+    public void setDaysOfStay(String daysOfStay) {
         this.daysOfStay = daysOfStay;
     }
 
@@ -46,7 +46,7 @@ public class Guest extends Person implements IPersonInfo, Cleanable {
         return checkedIn;
     }
 
-    public void setChecked(boolean checkedIn) {
+    public void setCheckedIn(boolean checkedIn) {
         this.checkedIn = checkedIn;
     }
 
@@ -71,10 +71,14 @@ public class Guest extends Person implements IPersonInfo, Cleanable {
         return getClass().getSimpleName();
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return getClass().getName() + "[name=" + getName() + ", lastName=" + getLastName() + ", age=" + getAge() +
                 ", daysOfStay=" + getDaysOfStay() + ", phoneNumber=" + getPhoneNumber() + ", checkedIn=" + getCheckedIn() + "]";
+    }*/
+    @Override
+    public String toString() {
+        return "Dear " + getName() + " " + getLastName() + "!. Nice to meet you in our hotel!";
     }
 
     @Override

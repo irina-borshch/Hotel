@@ -1,30 +1,28 @@
 package com.solvd.hotel;
 
 
-import com.solvd.hotel.interfaces.functional.IAddTime;
-import com.solvd.hotel.interfaces.functional.IRename;
-import com.solvd.hotel.invoice.AdditionalService;
-import com.solvd.hotel.logic.Booking;
+import com.solvd.hotel.enums.RoomType;
+import com.solvd.hotel.exceptions.AgeException;
 import com.solvd.hotel.logic.BookingRoomService;
 import com.solvd.hotel.logic.CheckIn;
-import com.solvd.hotel.enums.RoomType;
-import com.solvd.hotel.mainHotel.HotelInfo;
-import com.solvd.hotel.people.Employee;
 import com.solvd.hotel.people.Guest;
-import com.solvd.hotel.taskUtils.Task1;
-import org.apache.commons.lang3.StringUtils;
+import com.solvd.hotel.processes.BookingService;
+import com.solvd.hotel.processes.CheckInService;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.Field;
-import java.lang.Exception;
+import java.io.File;
+import java.io.IOException;
+
+import com.solvd.hotel.exceptions.InvalidChoiceException;
+
 import java.util.*;
-import java.util.List;
 
 public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         final BookingRoomService roomService = new BookingRoomService();
 
@@ -36,15 +34,16 @@ public class Main {
         Booking booking = new Booking();
 
 
-        CheckIn checkIn = new CheckIn(guests, RoomType.ECONOM, 100, roomService);
-        CheckIn secondCheckIn = new CheckIn(guests, RoomType.ECONOM, 200, roomService);
 
-        List<CheckIn> checkIns = Arrays.asList(checkIn, secondCheckIn);
 
-        try {
-            for (CheckIn currentCheckIn : checkIns) {
-                currentCheckIn.checkAge();
-            }
+
+     */
+
+
+       /* try {
+
+            checkIn.checkAge();
+
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
@@ -60,14 +59,21 @@ public class Main {
 
         HotelInfo hotelInfo = new HotelInfo();
         hotelInfo.setHotelName("UK = HOME");
-        logger.info(hotelInfo.getHotelName());
+        //logger.info(hotelInfo.getHotelName());
         String name = null;
         try {
             Field field = hotelInfo.getClass().getDeclaredField("hotelName");
             field.setAccessible(true);
-           // field.set(hotelInfo, (String) "after reflection");
+            field.set(hotelInfo, (String) "after reflection");
             name = (String) field.get(hotelInfo);
+            Method method = hotelInfo.getClass().getDeclaredMethod("getHotelName");
+            method.setAccessible(true);
+            logger.info(method.invoke(hotelInfo));
         } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
         logger.info(name);
@@ -92,5 +98,112 @@ public class Main {
         logger.info(bookingIdAndGuests);
 
 
+    }*/
+
+    public static void main(String[] args) {
+        final BookingRoomService roomService = new BookingRoomService();
+        final BookingService bookingService = new BookingService();
+        final CheckInService checkInService = new CheckInService(roomService);
+        final File guestFile = new File("src/main/resources/guest.txt");
+        final List<String> guestData = new ArrayList<>();
+
+        int choice;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            logger.info("Welcome! We are pleased to welcome you to our boutique hotel UK = HOME. Choose your next steps:" + '\n' +
+                    "1) Book a room." + '\n' +
+                    "2) Already have a booking order. Want to check in." + '\n' +
+                    "3) Want to check out. May I have the bill?" + '\n' +
+                    "4) Become a partner of our hotel." + '\n' +
+                    "5) Want to become a part of our team." + '\n' +
+                    "0) Exit" + '\n' + '\n' +
+                    "Make your choice:");
+            choice = scanner.nextInt();
+
+            try {
+                switch (choice) {
+                    case 1:
+                        Guest guest = bookingService.fillGuestInfo();
+                        CheckIn checkIn = new CheckIn(chooseRoom());
+                        checkIn = checkInService.occupyRoom(guest, checkIn);
+                        guestData.add("First name: " + guest.getName());
+                        guestData.add("Last name: " + guest.getLastName());
+                        guestData.add("Age: " + guest.getAge());
+                        guestData.add("Preferred room: " + checkIn.getRoomType());
+                        FileUtils.writeLines(guestFile, guestData, true);
+                        break;
+
+
+                    case 2:
+
+                        break;
+                    case 3:
+
+                        break;
+
+                    case 4:
+
+
+                        break;
+                    case 5:
+
+                        break;
+                    case 0:
+                        logger.info("Exit from the Hotel. Have a nice day!");
+                        return;
+
+                    default:
+                        logger.info("Invalid data entry. Choose correct option.");
+                }
+            } catch (IOException e) {
+                logger.error(e);
+            } catch (AgeException e) {
+                throw new RuntimeException(e);
+            }
+
+        } while (true);
+    }
+
+    private static RoomType chooseRoom() {
+        logger.info("Choose room which you want:\n" +
+                "1) SINGLE\n" +
+                "2) DOUBLE\n" +
+                "3) TRIPLE\n" +
+                "4) QUAD\n" +
+                "5) QUEEN\n" +
+                "6) ECONOM\n" +
+                "7) PENTHOUSE\n");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        RoomType type;
+        switch (choice) {
+            case 1:
+                type = RoomType.SINGLE;
+                break;
+            case 2:
+                type = RoomType.DOUBLE;
+                break;
+            case 3:
+                type = RoomType.TRIPLE;
+                break;
+            case 4:
+                type = RoomType.QUAD;
+                break;
+            case 5:
+                type = RoomType.QUEEN;
+                break;
+            case 6:
+                type = RoomType.ECONOM;
+                break;
+            case 7:
+                type = RoomType.PENTHOUSE;
+                break;
+            case 8:
+                type = null;
+                break;
+            default:
+                throw new RuntimeException("Invalid room type");
+        }
+        return type;
     }
 }

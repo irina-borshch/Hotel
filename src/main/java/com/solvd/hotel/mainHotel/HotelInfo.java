@@ -32,7 +32,7 @@ public class HotelInfo extends Address implements IReceptionCall {
         this.services = services;
     }
 
-    public String getHotelName() {
+    private String getHotelName() {
         return hotelName;
     }
 

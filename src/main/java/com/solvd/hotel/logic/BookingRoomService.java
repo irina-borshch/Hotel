@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BookingRoomService {
 
-    private List<Room> rooms = Arrays.asList(
+    private final List<Room> rooms = Arrays.asList(
             new Room(1, 11, RoomType.ECONOM, 11),
             new Room(2, 22, RoomType.SINGLE, 22),
             new Room(3, 33, RoomType.PENTHOUSE, 33),
@@ -22,9 +22,12 @@ public class BookingRoomService {
     public Room getFreeRoom(RoomType type) {
         Room room = rooms.stream()
                 .filter(it -> !it.isOccupiedRoom())
-                .filter(preferredRoom -> preferredRoom.getRoomType() == type)
+                .filter(preferredRoom -> {
+                    if (type == null) return true;
+                    else return preferredRoom.getRoomType() == type;
+                })
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Can't find room for guest"));
+                .orElseThrow(() -> new RuntimeException("Can't find room for guest."));
         return room.setOccupiedRoom(true);
     }
 }
