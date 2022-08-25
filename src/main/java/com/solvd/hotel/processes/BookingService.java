@@ -1,8 +1,12 @@
 package com.solvd.hotel.processes;
 
+import com.solvd.hotel.enums.RoomType;
 import com.solvd.hotel.exceptions.AgeException;
+import com.solvd.hotel.exceptions.DateException;
+import com.solvd.hotel.logic.BookingOrder;
 import com.solvd.hotel.people.Guest;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,10 +14,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.lang.String;
 
 public class BookingService {
+    public static final List<BookingOrder> bookingOrders = new ArrayList<>();
     private static final Logger logger = LogManager.getLogger(BookingService.class);
 
     public static void main(String[] args) {
@@ -24,12 +30,24 @@ public class BookingService {
         Scanner scan = new Scanner(System.in);
         Guest guest = new Guest();
         Integer age = null;
+        Random rand = new Random();
+        int generateBookingOrder = rand.nextInt(888);
         boolean isFirstNameValid = false;
         boolean isLastNameValid = false;
         boolean isAgeValid = false;
         boolean isDaysOfStayValid = false;
         File guestFile = new File("src/main/resources/guest.txt");
         //}
+        do {
+            logger.info("Enter amount of days you want to stay: ");
+            String daysOfStay = scan.nextLine();
+            if (daysOfStay.matches("[0-9]+")) {
+                guest.setDaysOfStay(daysOfStay);
+                isDaysOfStayValid = true;
+            } else {
+                logger.info("Please use only numbers to indicate amount of days you want to stay.");
+            }
+        } while (!isDaysOfStayValid);
         do {
             logger.info("Enter your First Name: ");
             String firstName = scan.nextLine();
@@ -63,13 +81,23 @@ public class BookingService {
         if (age >= 18) {
             guest.setAge(age);
 
+
             logger.info("Thank you for booking creating!");
+            guest.setBookingOrder(StringUtils.upperCase(StringUtils.truncate(guest.getName(), 1)) + "-" +
+                    StringUtils.upperCase(StringUtils.truncate(guest.getLastName(), 2)) + "-" +
+                    generateBookingOrder);
+            bookingOrders.add(new BookingOrder(guest.getBookingOrder()));
+
+            logger.info("Dear " + guest.getName() + " " + guest.getLastName() + "! You've successfully created a booking. Your booking order is: " +
+                    guest.getBookingOrder());
+
             return guest;
 
         } else {
             logger.info("You can not be checked in. You must be of legal age or accompanied by an adult");
             throw new AgeException("Your age is " + age + ". That is why you can not be checked in. You must be over 18 years old");
         }
+
 
         /*try {
 
@@ -91,7 +119,7 @@ public class BookingService {
                 guestData.add("Amount days of stay: " + guest.getDaysOfStay());
                 isDaysOfStayValid = true;
             } else {
-                logger.info("Please use only numbers to indicate days you want to stay.");
+                logger.info("Please use only numbers to indicate amount of days you want to stay.");
             }
         } while (isDaysOfStayValid != true);*/
 

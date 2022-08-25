@@ -11,12 +11,16 @@ public class BookingOrder extends Reservation {
     private boolean booking;
     private Payment payment;
 
-    public BookingOrder(boolean booking, List<Guest> guests, double price, Payment payment) throws DateException {
+    public BookingOrder(boolean booking, List<Guest> guests, double price, Payment payment) {
         super(guests, price);
 
         this.booking = booking;
         this.payment = payment;
     }
+
+    public BookingOrder(Object bookingOrder) {
+    }
+
 
     public boolean getBooking() {
         return booking;

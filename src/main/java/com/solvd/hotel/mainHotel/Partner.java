@@ -5,20 +5,22 @@ import com.solvd.hotel.invoice.Service;
 
 import java.util.Objects;
 
-public class Partners extends Address {
+public class Partner extends Address {
     private int partnerId;
     private String partnerName;
+    private String partnerLastName;
     private String phoneNumber;
     private Service service;
 
-    public Partners() {
+    public Partner() {
     }
 
-    public Partners(String nameCountry, City city, String address, int partnerId, String partnerName,
-                    String phoneNumber, Service service) {
+    public Partner(String nameCountry, City city, String address, int partnerId, String partnerName, String partnerLastName,
+                   String phoneNumber, Service service) {
         super(nameCountry, city, address);
         this.partnerId = partnerId;
         this.partnerName = partnerName;
+        this.partnerLastName = partnerLastName;
         this.phoneNumber = phoneNumber;
         this.service = service;
     }
@@ -55,6 +57,14 @@ public class Partners extends Address {
         this.service = service;
     }
 
+    public String getPartnerLastName() {
+        return partnerLastName;
+    }
+
+    public void setPartnerLastName(String partnerLastName) {
+        this.partnerLastName = partnerLastName;
+    }
+
     @Override
     public String toString() {
         return getClass().getName() + "[nameCountry=" + getNameCountry() + ", city=" + getCity() + ", address=" + getAddress()
@@ -73,8 +83,16 @@ public class Partners extends Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Partners partners = (Partners) o;
+        Partner partner = (Partner) o;
 
-        return hashCode() == partners.hashCode();
+        return hashCode() == partner.hashCode();
     }
+
+    /*public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }*/
 }

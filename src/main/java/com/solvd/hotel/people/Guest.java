@@ -14,6 +14,7 @@ public class Guest extends Person implements IPersonInfo, Cleanable {
     private String daysOfStay;
     private String phoneNumber;
     private boolean checkedIn;
+    private String bookingOrder;
 
     public Guest() {
 
@@ -71,11 +72,11 @@ public class Guest extends Person implements IPersonInfo, Cleanable {
         return getClass().getSimpleName();
     }
 
-   /* @Override
-    public String toString() {
-        return getClass().getName() + "[name=" + getName() + ", lastName=" + getLastName() + ", age=" + getAge() +
-                ", daysOfStay=" + getDaysOfStay() + ", phoneNumber=" + getPhoneNumber() + ", checkedIn=" + getCheckedIn() + "]";
-    }*/
+    /* @Override
+     public String toString() {
+         return getClass().getName() + "[name=" + getName() + ", lastName=" + getLastName() + ", age=" + getAge() +
+                 ", daysOfStay=" + getDaysOfStay() + ", phoneNumber=" + getPhoneNumber() + ", checkedIn=" + getCheckedIn() + "]";
+     }*/
     @Override
     public String toString() {
         return "Dear " + getName() + " " + getLastName() + "!. Nice to meet you in our hotel!";
@@ -93,6 +94,14 @@ public class Guest extends Person implements IPersonInfo, Cleanable {
         if (o == null || getClass() != o.getClass()) return false;
         Guest guest = (Guest) o;
         return hashCode() == guest.hashCode();
+    }
+
+    public String getBookingOrder() {
+        return bookingOrder;
+    }
+
+    public void setBookingOrder(String bookingOrder) {
+        this.bookingOrder = bookingOrder;
     }
 }
 
