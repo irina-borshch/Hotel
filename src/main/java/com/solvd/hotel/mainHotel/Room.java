@@ -15,16 +15,26 @@ public class Room implements Cleanable {
     private int roomNumber;
     private RoomType type;
     private int roomId;
+    private int price;
     private boolean isOccupiedRoom = false;
 
     public Room() {
     }
 
-    public Room(int floor, int roomNumber, RoomType type, int roomId) {
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Room(int floor, int roomNumber, RoomType type, int roomId, int price) {
         this.floor = floor;
         this.roomNumber = roomNumber;
         this.type = type;
         this.roomId = roomId;
+        this.price = price;
     }
 
     public int getFloor() {

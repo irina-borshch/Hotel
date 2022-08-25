@@ -40,8 +40,8 @@ public class BookingService {
         //}
         do {
             logger.info("Enter amount of days you want to stay: ");
-            String daysOfStay = scan.nextLine();
-            if (daysOfStay.matches("[0-9]+")) {
+            int daysOfStay = scan.nextInt();
+            if (String.valueOf(daysOfStay).matches("[0-9]+")) {
                 guest.setDaysOfStay(daysOfStay);
                 isDaysOfStayValid = true;
             } else {

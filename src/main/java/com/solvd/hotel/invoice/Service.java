@@ -2,78 +2,45 @@ package com.solvd.hotel.invoice;
 
 import com.solvd.hotel.interfaces.Cleanable;
 import com.solvd.hotel.people.Guest;
+import com.solvd.hotel.enums.AdditionalService;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Service implements Cleanable {
-    private int serviceId;
-    private Guest guest;
-    private int employeeId;
-    private String serviceName;
-    private boolean additionalService;
-    private double price;
+
+    private AdditionalService serviceName;
+    private int price;
+
 
     public Service() {
 
     }
 
-    public Service(int serviceId, Guest guest, int employeeId, String serviceName, boolean additionalService,
-                   double price) {
-        this.serviceId = serviceId;
-        this.guest = guest;
-        this.employeeId = employeeId;
+    public Service(AdditionalService serviceName, int price) {
+
         this.serviceName = serviceName;
-        this.additionalService = additionalService;
         this.price = price;
     }
 
-    public int getServiceId() {
-        return serviceId;
-    }
 
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public Guest getGuest() {
-        return guest;
-    }
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
-    }
-
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public boolean getAdditionalService() {
-        return additionalService;
-    }
-
-    public void setAdditionalService(boolean additionalService) {
-        this.additionalService = additionalService;
-    }
-
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
+
+    public AdditionalService getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(AdditionalService serviceName) {
+        this.serviceName = serviceName;
+    }
+
 
     @Override
     public void clean() {
@@ -85,7 +52,7 @@ public class Service implements Cleanable {
         return getClass().getSimpleName();
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return getClass().getName() + "[serviceId=" + getServiceId() + ", guest=" + getGuest() + ", employeeId="
                 + getEmployeeId() + ", serviceName=" + getServiceName() + ", additionalService=" + getAdditionalService()
@@ -96,7 +63,7 @@ public class Service implements Cleanable {
     public int hashCode() {
         return Objects.hash(getServiceId(), getGuest().hashCode(), getEmployeeId(), getServiceName().hashCode(),
                 getAdditionalService(), getPrice());
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

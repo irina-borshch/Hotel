@@ -19,21 +19,21 @@ public class Payment implements IPaymentSuccess {
     private Date date;
     private List<Service> services;
     private boolean additionalService;
-    private List<AdditionalService> AdditionalServices;
+    private List<ExtraServices> extraServices;
     private double amount;
     private boolean success;
 
-    public Payment() {
+    public Payment(String paymentID, String guestName, Date date, boolean b) {
     }
 
     public Payment(int paymentId, Guest guest, Date date, List<Service> services, boolean additionalService,
-                   List<AdditionalService> AdditionalServices, double amount, boolean success) {
+                   List<ExtraServices> extraServices, double amount, boolean success) {
         this.paymentId = paymentId;
         this.guest = guest;
         this.date = date;
         this.services = services;
         this.additionalService = additionalService;
-        this.AdditionalServices = AdditionalServices;
+        this.extraServices = extraServices;
         this.amount = amount;
         this.success = success;
     }
@@ -78,12 +78,12 @@ public class Payment implements IPaymentSuccess {
         this.additionalService = additionalService;
     }
 
-    public List<AdditionalService> getAdditionalServices() {
-        return AdditionalServices;
+    public List<ExtraServices> getAdditionalServices() {
+        return extraServices;
     }
 
-    public void setAdditionalServices(List<AdditionalService> AdditionalServices) {
-        this.AdditionalServices = AdditionalServices;
+    public void setAdditionalServices(List<ExtraServices> extraServices) {
+        this.extraServices = extraServices;
     }
 
     public double getAmount() {

@@ -9,15 +9,15 @@ import java.util.List;
 public class BookingRoomService {
 
     private final List<Room> rooms = Arrays.asList(
-            new Room(1, 11, RoomType.ECONOM, 11),
-            new Room(2, 22, RoomType.SINGLE, 22),
-            new Room(3, 33, RoomType.PENTHOUSE, 33),
-            new Room(2, 21, RoomType.ECONOM, 21),
-            new Room(1, 12, RoomType.TRIPLE, 12),
-            new Room(3, 31, RoomType.QUEEN, 31),
-            new Room(3, 32, RoomType.DOUBLE, 32),
-            new Room(2, 23, RoomType.SINGLE, 23),
-            new Room(1, 33, RoomType.QUAD, 33));
+            new Room(1, 11, RoomType.ECONOM, 11, 70),
+            new Room(2, 22, RoomType.SINGLE, 22,100),
+            new Room(3, 33, RoomType.PENTHOUSE, 33,400),
+            new Room(2, 21, RoomType.ECONOM, 21,70),
+            new Room(1, 12, RoomType.TRIPLE, 12,200),
+            new Room(3, 31, RoomType.QUEEN, 31,300),
+            new Room(3, 32, RoomType.DOUBLE, 32,150),
+            new Room(2, 23, RoomType.SINGLE, 23,100),
+            new Room(1, 33, RoomType.QUAD, 33,250));
 
     public Room getFreeRoom(RoomType type) {
         Room room = rooms.stream()

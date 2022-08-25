@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Guest extends Person implements IPersonInfo, Cleanable {
     private static final Logger logger = LogManager.getLogger(Guest.class);
-    private String daysOfStay;
+    public int daysOfStay;
     private String phoneNumber;
     private boolean checkedIn;
     private String bookingOrder;
@@ -20,18 +20,18 @@ public class Guest extends Person implements IPersonInfo, Cleanable {
 
     }
 
-    public Guest(String name, String lastName, int age, String daysOfStay, String phoneNumber, boolean checkedIn) {
+    public Guest(String name, String lastName, int age, int daysOfStay, String phoneNumber, boolean checkedIn) {
         super(name, lastName, age);
         this.daysOfStay = daysOfStay;
         this.phoneNumber = phoneNumber;
         this.checkedIn = checkedIn;
     }
 
-    public String getDaysOfStay() {
+    public int getDaysOfStay() {
         return daysOfStay;
     }
 
-    public void setDaysOfStay(String daysOfStay) {
+    public void setDaysOfStay(int daysOfStay) {
         this.daysOfStay = daysOfStay;
     }
 
@@ -103,6 +103,8 @@ public class Guest extends Person implements IPersonInfo, Cleanable {
     public void setBookingOrder(String bookingOrder) {
         this.bookingOrder = bookingOrder;
     }
+
+
 }
 
 
