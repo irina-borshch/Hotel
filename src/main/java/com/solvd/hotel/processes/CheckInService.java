@@ -39,54 +39,20 @@ public class CheckInService implements Checkable {
         Scanner scan = new Scanner(System.in);
         try {
             File guestData = getFile("src/main/resources/guest.txt");
-            logger.info("Find information about booking order.\n");
+            logger.info("Find information about booking order. Enter you booking ID.\n");
             String guest = FileUtils.readFileToString(guestData, Charsets.toCharset(StandardCharsets.UTF_8));
             String str = scan.nextLine();
             if (guest.contains(str)) {
-                logger.info("Guest checked in successfully. We hope you will enjoy your stay in our hotel!");
+                logger.info("You checked in successfully. We hope you will enjoy your stay in our hotel!");
                 return true;
             } else {
-                logger.info("Check in was not successful. Please make create a booking.");
+                logger.info("Check in was not successful. Please create a booking.");
                 return false;
             }
-            //logger.info("The information about guests:\n" + guest);
-
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
-            /*String bookingOrder = scan.nextLine();
-            if (bookingOrder.matches(scan.findInLine("[0-9]+")));
-            guestData.canExecute();
-            checkCheckIn = true;*/
-            /*Scanner scan = new Scanner(str);
-            logger.info("Found information:\n" + scan.findInLine("[A-Z][a-z]+"));
-            scan.close();*/
-        /*} catch (Exception exception) {
-            logger.info(exception);*/
-
-
-       /* do {
-
-            //String word = scan.findInLine();
-            try {
-                File guestData = getFile("src/main/resources/guest.txt");
-                logger.info("Find information about booking order. Enter your last name or booking order:\n");
-                String guest = FileUtils.readFileToString(guestData, Charsets.toCharset(StandardCharsets.UTF_8));
-                String str = "[A-Z][a-z]+";
-                Scanner scan = new Scanner(str);
-                logger.info("Found information:\n" + scan.findInLine("[A-Z][a-z]+"));
-                scan.close();
-                        //StringUtils.countMatches(scan.nextLine(), "(...)"));
-                       // StringUtils.countMatches(text,"[A-Z][a-z]+");
-                //checkCheckIn = true;
-            } catch (Exception exception) {
-                logger.info(exception);
-            }
-        } while (!checkCheckIn);*/
-
 
     @Override
     public boolean checkCheckIn(Guest guest) {

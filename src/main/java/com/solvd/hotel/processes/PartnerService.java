@@ -1,6 +1,5 @@
 package com.solvd.hotel.processes;
 
-import com.solvd.hotel.people.Guest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.solvd.hotel.mainHotel.Partner;
@@ -50,7 +49,7 @@ public class PartnerService {
                 logger.info("Please use only numbers to enter your phone number.");
             }
         } while (!isPhoneNumberValid);
-        logger.info("Thank you for your information! Our manager will contact you!");
+        logger.info("Thank you for your information " + partner.getPartnerName() + " " + partner.getPartnerLastName() + "! Our manager will contact you!");
         return partner;
 
     }

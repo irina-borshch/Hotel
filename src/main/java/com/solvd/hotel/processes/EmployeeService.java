@@ -3,7 +3,6 @@ package com.solvd.hotel.processes;
 import com.solvd.hotel.people.Employee;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.solvd.hotel.people.Person;
 
 import java.io.File;
 import java.util.Scanner;
@@ -49,7 +48,7 @@ public class EmployeeService {
                 logger.info("Please use only numbers to enter your phone number.");
             }
         } while (!isPhoneNumberValid);
-        logger.info("Thank you for your information! Our recruiter will contact you!");
+        logger.info("Thank you for your information " + employee.getName() + " "  + employee.getLastName() + "! Our recruiter will contact you!");
         return employee;
     }
 }

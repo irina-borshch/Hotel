@@ -56,23 +56,6 @@ public class CheckIn {
         CheckIn checkIn = (CheckIn) o;
         return hashCode() == checkIn.hashCode();
     }
-
-   /* @Override
-    public boolean checkIn(CheckIn checkIn) {
-
-    }*/
-
-    /*@Override
-    public void approveNumberOfGuests() {
-        logger.info("Please check the amount of guests. Thanks!");
-    }
-
-    @Override
-    public void checkPersonalInfo() {
-        logger.info("Please check  personal information. Thanks!");
-    }*/
-
-
 }
 
 

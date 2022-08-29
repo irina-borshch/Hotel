@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+import static com.solvd.hotel.enums.AdditionalService.CLEANING;
+
 public class PayForRoom {
     private static double totalPrice = 0;
     private final static List<String> invoice = new ArrayList<>();
@@ -38,7 +40,7 @@ public class PayForRoom {
             new Service(AdditionalService.SPA, 150),
             new Service(AdditionalService.CAR_RENTAL, 165),
             new Service(AdditionalService.RESTAURANT_BOOKING, 25),
-            new Service(AdditionalService.CLEANING, 85));
+            new Service(CLEANING, 85));
     static Guest guest = new Guest();
 
 
@@ -47,7 +49,7 @@ public class PayForRoom {
     }
 
     public static void addPriceToBill() {
-        logger.info("Enter the room type of occupied room:");
+        logger.info("Enter the room type of your occupied room:");
         findByRoomType();
         //continueCountingPrice();
 
@@ -61,7 +63,8 @@ public class PayForRoom {
         try {
             for (Room room : rooms) {
                 if (occupiedRoom.equalsIgnoreCase(room.getRoomType().toString())) {
-                    occupiedRoom = room.getRoomType().toString();
+                    occupiedRoom = String.valueOf(room);
+                    //occupiedRoom = room.getRoomType().toString();
                     logger.info("Your occupied room is added to the total bill: " + occupiedRoom);
                     invoice.add(occupiedRoom);
                     logger.info("Enter amount days of stay:");
@@ -74,7 +77,7 @@ public class PayForRoom {
             if (!notMatchRoomType) {
                 continueCountingPrice();
             } else {
-                logger.info("Invalid room type room number. Please try again.");
+                logger.info("Invalid room type. Please try again.");
                 findByRoomType();
             }
         } catch (RuntimeException e) {
@@ -90,7 +93,7 @@ public class PayForRoom {
         do {
             logger.info("Did you use extra service?\n" +
                     "1) Yes. Add extra service to total bill.\n" +
-                    "2) No, did not use extra services.");
+                    "2) Continue payment process.");
             choice = scanner.nextInt();
             try {
 
@@ -110,12 +113,24 @@ public class PayForRoom {
         } while (choice != 0);
 
     }
-
-
     public static void addExtraServicesToBill() {
-        logger.info("Enter the service type you used:");
+        logger.info("List of additional services:\n" +
+                "1) BREAKFAST_DELIVERY\n" +
+                "2) LUNCH_DELIVERY\n" +
+                "3) DINNER_DELIVERY\n" +
+                "4) TAXI_ORDER\n" +
+                "5) CITY_GUIDE\n" +
+                "6) SPA\n" +
+                "7) CAR_RENTAL\n" +
+                "8) RESTAURANT_BOOKING\n" +
+                "9) CLEANING\n");
+        // showAdditionalServices();
+        logger.info("Write the used additional service exactly as you see from the list above:");
         Scanner scanner = new Scanner(System.in);
         String extraService = scanner.nextLine();
+        /*Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        AdditionalService service;*/
         boolean notMatchServiceName = true;
         for (Service service : services) {
             if (extraService.equalsIgnoreCase(String.valueOf(service.getServiceName()))) {
@@ -129,7 +144,6 @@ public class PayForRoom {
         }
         if (notMatchServiceName) {
             logger.info("Invalid entering extra service. Please try again.");
-            addPriceToBill();
         }
     }
 
@@ -144,13 +158,12 @@ public class PayForRoom {
         List<String> guestData = new ArrayList<>();
 
         File guestFile = new File("src/main/resources/payment.txt");
-        logger.info("Pay a bill:");
         Guest guest = new Guest();
-        logger.info("Enter your First name:");
+        logger.info("Enter your First name for submitting payment process:");
         guestName = scanner.nextLine();
         guest.setName(guestName);
         guestData.add("First Name: " + guest.getName());
-        logger.info("Enter your Last Name:");
+        logger.info("Enter your Last Name for submitting payment process:");
         guestLastName = scanner.nextLine();
         guest.setLastName(guestLastName);
         guestData.add("Last Name: " + guest.getLastName());
@@ -176,6 +189,9 @@ public class PayForRoom {
                 logger.info("Please write 'OK' to confirm your order.");
             }
         } while (!confirmPaying);
+        logger.info("Using this bill you can pay your invoice at the reception of the hotel " +
+                "or using payment ID at the website of your bank.");
+        logger.info("Have a nice day!");
     }
 
 }

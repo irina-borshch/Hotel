@@ -1,11 +1,8 @@
 package com.solvd.hotel.processes;
 
-import com.solvd.hotel.enums.RoomType;
 import com.solvd.hotel.exceptions.AgeException;
-import com.solvd.hotel.exceptions.DateException;
 import com.solvd.hotel.logic.BookingOrder;
 import com.solvd.hotel.people.Guest;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,10 +18,6 @@ import java.lang.String;
 public class BookingService {
     public static final List<BookingOrder> bookingOrders = new ArrayList<>();
     private static final Logger logger = LogManager.getLogger(BookingService.class);
-
-    public static void main(String[] args) {
-
-    }
 
     public Guest fillGuestInfo() throws IOException, AgeException {
         Scanner scan = new Scanner(System.in);
@@ -50,7 +43,8 @@ public class BookingService {
         } while (!isDaysOfStayValid);
         do {
             logger.info("Enter your First Name: ");
-            String firstName = scan.nextLine();
+            Scanner sc = new Scanner(System.in);
+            String firstName = sc.nextLine();
             if (firstName.matches("[A-Z][a-z]+")) {
                 guest.setName(firstName);
                 isFirstNameValid = true;
@@ -61,7 +55,8 @@ public class BookingService {
 
         do {
             logger.info("Enter your Last Name: ");
-            String lastName = scan.nextLine();
+            Scanner sc = new Scanner(System.in);
+            String lastName = sc.nextLine();
             if (lastName.matches("[A-Z][a-z]+")) {
                 guest.setLastName(lastName);
                 isLastNameValid = true;
@@ -97,32 +92,6 @@ public class BookingService {
             logger.info("You can not be checked in. You must be of legal age or accompanied by an adult");
             throw new AgeException("Your age is " + age + ". That is why you can not be checked in. You must be over 18 years old");
         }
-
-
-        /*try {
-
-            checkIn.occupyRoom();
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            return null;
-        }
-        guest.setAge(checkIn.getAge());
-        guestData.add("Age: " + guest.getAge());
-        //isAgeValid = true;
-*/
-
-        /*do {
-            logger.info("Enter amount of days you want to stay: ");
-            String daysOfStay = scan.nextLine();
-            if (daysOfStay.matches("[0-9]+")) {
-                guest.setDaysOfStay(daysOfStay);
-                guestData.add("Amount days of stay: " + guest.getDaysOfStay());
-                isDaysOfStayValid = true;
-            } else {
-                logger.info("Please use only numbers to indicate amount of days you want to stay.");
-            }
-        } while (isDaysOfStayValid != true);*/
-
     }
 
 }
