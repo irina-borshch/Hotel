@@ -1,4 +1,4 @@
-package com.solvd.hotel.tasks.deadpool;
+package com.solvd.hotel.tasks.deadlock;
 
 import java.time.LocalDateTime;
 

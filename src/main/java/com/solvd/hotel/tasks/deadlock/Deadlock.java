@@ -1,4 +1,4 @@
-package com.solvd.hotel.tasks.deadpool;
+package com.solvd.hotel.tasks.deadlock;
 
 public class Deadlock {
     public static void main(String[] args) {
