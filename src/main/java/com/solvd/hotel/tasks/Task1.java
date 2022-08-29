@@ -1,4 +1,4 @@
-package com.solvd.hotel.taskUtils;
+package com.solvd.hotel.tasks;
 
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
